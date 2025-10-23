@@ -1,0 +1,92 @@
+﻿# ==============================================================================
+# Configuration for the Geometric Dynamics of Consumer Credit Cycles Model
+# ==============================================================================
+# This file contains all hyperparameters and structural definitions for the
+# model, data processing, and training pipeline.
+
+# ------------------------------------------------------------------------------
+# 1. Data Processing and Structuring Parameters
+# ------------------------------------------------------------------------------
+data_processing:
+  frequency: 'Quarterly'
+  index_alignment: 'QuarterEnd'
+  lookback_horizon_L: 8
+  standardization_window: 8
+  standardization_epsilon: 1.0e-8
+  mask_warmup_in_loss: true
+  warmup_min_observations: 8
+  monthly_to_quarterly_aggregation:
+    UNRATE: 'QuarterlyAverage'
+    PSAVERT: 'QuarterlyAverage'
+    PCE: 'QuarterlyAverage'
+    REVOLSL: 'QuarterEnd'
+  transformations:
+    UNRATE: 'level'
+    PSAVERT: 'level'
+    PCE: 'log_diff'
+    REVOLSL: 'log_diff'
+  causal_indexing: true
+
+# ------------------------------------------------------------------------------
+# 2. Core Model Architecture Parameters
+# ------------------------------------------------------------------------------
+architecture:
+  multivector_dimension_dm: 16
+  active_multivector_components: 11
+  grades_active: [0, 1, 2]
+  grades_inactive: [3, 4]
+  component_order:
+    - 'scalar'
+    - 'e1(u)'
+    - 'e2(s)'
+    - 'e3(r)'
+    - 'e4(v)'
+    - 'e1^e2(u^s)'
+    - 'e1^e3(u^r)'
+    - 'e1^e4(u^v)'
+    - 'e2^e3(s^r)'
+    - 'e2^e4(s^v)'
+    - 'e3^e4(r^v)'
+  pi_order:
+    - [1, 2]
+    - [1, 3]
+    - [1, 4]
+    - [2, 3]
+    - [2, 4]
+    - [3, 4]
+  hidden_dimension_dh: 32
+  leaky_relu_alpha: 0.10
+  attention_stability_epsilon: 1.0e-6
+  activation_shift_enabled: true
+
+# ------------------------------------------------------------------------------
+# 3. MLP Prediction Head Architecture Parameters
+# ------------------------------------------------------------------------------
+prediction_head:
+  head_type: 'MLP'
+  mlp_hidden_dimension: 16
+  mlp_activation_function: 'ReLU'
+  use_bias: true
+  dropout: 0.0
+  layer_norm: false
+
+# ------------------------------------------------------------------------------
+# 4. Training and Optimization Parameters
+# ------------------------------------------------------------------------------
+training:
+  optimizer: 'Adam'
+  learning_rate_eta: 1.0e-4
+  adam_betas: [0.9, 0.999]
+  weight_decay: 0.0
+  loss_function: 'MeanSquaredError'
+  regularization_lambda_qk: 1.0e-3
+  regularization_lambda_v: 1.0e-4
+  num_epochs: 200
+  batch_size: 1
+  sequence_batching_policy: 'Chronological'
+  compute_SZ_per_time_step: true
+  mask_warmup_in_loss: true
+  early_stopping:
+    enabled: true
+    patience: 20
+    monitor: 'val_loss'
