@@ -1,0 +1,122 @@
+﻿# ==============================================================================
+# requirements.txt
+# 
+# Geometric Dynamics of Consumer Credit Cycles: A Multivector-based
+# Linear-Attention Framework for Explanatory Economic Analysis
+#
+# Production-grade dependency specification for complete reproducibility.
+# This file pins all direct and critical transitive dependencies to ensure
+# a stable, deterministic computational environment across deployment targets.
+#
+# Installation Instructions:
+# --------------------------
+# 1. Create a fresh virtual environment (recommended):
+#    python3 -m venv venv
+#    source venv/bin/activate  # On Windows: venv\Scripts\activate
+#
+# 2. Upgrade pip to latest version:
+#    pip install --upgrade pip
+#
+# 3. Install all dependencies:
+#    pip install -r requirements.txt
+#
+# Python Version Requirement: >= 3.8, < 3.12 (tested on 3.9, 3.10, 3.11)
+#
+# Author: CS Chirinda
+# Version: 1.0.0
+# Last Updated: 2025-10-23
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Core Scientific Computing Stack
+# ------------------------------------------------------------------------------
+
+# NumPy: Fundamental package for numerical computing with multidimensional arrays
+# Used for: Tensor operations, linear algebra, statistical computations
+numpy>=1.24.0,<2.0.0
+
+# Pandas: High-performance data manipulation and time series analysis
+# Used for: Time series preprocessing, rolling window operations, data alignment
+pandas>=2.0.0,<3.0.0
+
+# ------------------------------------------------------------------------------
+# Deep Learning Framework
+# ------------------------------------------------------------------------------
+
+# PyTorch: Tensor computation library with GPU acceleration and automatic differentiation
+# Used for: Neural network implementation, linear attention mechanism, gradient computation
+# Note: Install CPU-only version by default. For GPU support, see documentation at:
+# https://pytorch.org/get-started/locally/
+torch>=2.0.0,<2.5.0
+
+# ------------------------------------------------------------------------------
+# Visualization Libraries
+# ------------------------------------------------------------------------------
+
+# Matplotlib: Comprehensive plotting library for static, animated, and interactive visualizations
+# Used for: Time series plots, geometric trajectory visualization, attention weight heatmaps
+matplotlib>=3.7.0,<4.0.0
+
+# Seaborn: Statistical data visualization built on matplotlib
+# Used for: Enhanced statistical plots, correlation matrices, distribution visualizations
+seaborn>=0.12.0,<1.0.0
+
+# ------------------------------------------------------------------------------
+# Progress Monitoring
+# ------------------------------------------------------------------------------
+
+# tqdm: Fast, extensible progress bar for loops and iterables
+# Used for: Training loop progress tracking, hyperparameter sweep monitoring
+tqdm>=4.65.0,<5.0.0
+
+# ------------------------------------------------------------------------------
+# Critical Transitive Dependencies (Explicitly Pinned for Stability)
+# ------------------------------------------------------------------------------
+
+# SciPy: Scientific computing library (transitive via pandas/numpy operations)
+# Required for: Optimization routines, sparse matrices, signal processing
+scipy>=1.10.0,<2.0.0
+
+# Pillow: Python Imaging Library (transitive via matplotlib)
+# Required for: Figure export to various image formats
+pillow>=9.5.0,<11.0.0
+
+# ------------------------------------------------------------------------------
+# Development and Code Quality Tools (Optional but Recommended)
+# ------------------------------------------------------------------------------
+
+# pytest: Testing framework for unit and integration tests
+# pytest>=7.3.0,<9.0.0
+
+# black: Uncompromising Python code formatter (PEP 8 compliant)
+# black>=23.3.0,<25.0.0
+
+# mypy: Static type checker for Python
+# mypy>=1.3.0,<2.0.0
+
+# flake8: Linting tool for style guide enforcement
+# flake8>=6.0.0,<8.0.0
+
+# isort: Utility to sort imports alphabetically and by section
+# isort>=5.12.0,<6.0.0
+
+# ------------------------------------------------------------------------------
+# Optional: Jupyter Notebook Support
+# ------------------------------------------------------------------------------
+
+# jupyter: Interactive computing environment for exploratory analysis
+# jupyter>=1.0.0,<2.0.0
+
+# ipykernel: IPython kernel for Jupyter
+# ipykernel>=6.23.0,<7.0.0
+
+# ------------------------------------------------------------------------------
+# Optional: Enhanced Performance Libraries
+# ------------------------------------------------------------------------------
+
+# numba: JIT compiler for accelerating numerical Python functions
+# numba>=0.57.0,<1.0.0
+
+# ------------------------------------------------------------------------------
+# End of requirements.txt
+# ==============================================================================
