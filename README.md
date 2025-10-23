@@ -206,8 +206,12 @@ If robustness analysis is run, a top-level file `robustness_analysis_full_result
 geometric_dynamics_consumer_credit_cycles/
 │
 ├── geometric_dynamics_consumer_credit_cycles_draft.ipynb # Main implementation notebook
+├── acquire_and_clean_fred_data.py                        # Script to download and preprocess data from FRED
 ├── config.yaml                                           # Master configuration file
 ├── requirements.txt                                      # Python package dependencies
+│
+├── data/
+│   └── consolidated_df_raw.csv                           # Pre-generated raw dataset for the study
 │
 ├── research_output/                                      # Example output directory
 │   ├── analysis_run_20251027_103000/
@@ -221,7 +225,7 @@ geometric_dynamics_consumer_credit_cycles/
 │   └── robustness_analysis_full_results.pkl
 │
 ├── LICENSE                                               # MIT Project License File
-└── README.md                                             # This file
+└── README.md                                             # Project README file (This File)
 ```
 
 ## Customization
